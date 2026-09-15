@@ -4,6 +4,7 @@ import io.github.nk00657.takeyari.TakeYari
 import io.github.nk00657.takeyari.common.item.NormalSpearItem
 import io.github.nk00657.takeyari.common.item.ThrowSpearItem
 import io.github.nk00657.takeyari.common.item.HeavySpearItem
+import io.github.nk00657.takeyari.common.item.TimeStopSpear
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Rarity
 import net.minecraft.world.item.Tiers
@@ -97,6 +98,11 @@ object ItemInit {
             reachBonus = 1.0,
             strength = 0,
             properties = Item.Properties().rarity(Rarity.UNCOMMON).defaultDurability(1024)
+        )
+    }
+    val a_very_strong_bamboo_spear by ITEMS.registerObject("a_very_strong_bamboo_spear"){
+        TimeStopSpear(
+            properties = Item.Properties().rarity(Rarity.EPIC).defaultDurability(1024)
         )
     }
 }
