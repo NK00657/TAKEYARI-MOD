@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "takeyari:item/a_very_strong_bamboo_spear"
+  }
+}
