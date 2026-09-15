@@ -2,17 +2,19 @@ package io.github.nk00657.takeyari.common.item
 
 import com.google.common.collect.ImmutableMultimap
 import com.google.common.collect.Multimap
+import net.minecraft.world.effect.MobEffectInstance
+import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.ai.attributes.Attribute
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.entity.ai.attributes.Attributes
 import net.minecraft.world.entity.player.Player
+import net.minecraft.world.entity.projectile.Arrow
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.BowItem
-import net.minecraft.world.item.Tier
 import net.minecraft.world.level.Level
-import net.minecraftforge.common.ForgeMod
+import net.minecraft.world.phys.EntityHitResult
 import java.util.UUID
 
 
@@ -53,6 +55,28 @@ class SupportSpearItem(
     override fun releaseUsing(stack: ItemStack, level: Level, entity: LivingEntity, timeLeft: Int){
         if(entity !is Player) return
 
+        val charge = this.getUseDuration(stack) - timeLeft
+        val power = getCustomPowerForTime(charge)
+
+        if(power < 0.1f) return
+
+        if(!level.isClientSide){
+            val arrow = object : Arrow(level, entity) {
+                override fun onHitEntity(result: EntityHitResult){
+                    super.onHitEntity(result)
+                    val target = result.entity
+                    if(target is Player){
+                        target.addEffect(MobEffectInstance(MobEffects.HEALTH_BOOST, 200, 1, true, true))
+                    }
+                    else if (target is LivingEntity){
+                        target.hurt(level.damageSources().magic(), 4.0f)
+                        target.addEffect(MobEffectInstance(MobEffects.POISON, 200, 2, false, false, false))
+                    }
+                }
+            }
+
+
+        }
 
     }
 
