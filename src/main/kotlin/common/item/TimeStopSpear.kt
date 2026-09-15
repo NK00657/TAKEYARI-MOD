@@ -31,7 +31,6 @@ class TimeStopSpear(properties: Properties):Item(properties) {
 
                 for (mob in nearbyEntities) {
                     mob.addEffect(MobEffectInstance(MobEffects.WEAKNESS, 200, 255, false, false, false))
-                    mob.addEffect(MobEffectInstance(MobEffects.JUMP, 200, 128, false, false, false))
                     mob.addEffect(MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 255, false, false, false))
                     mob.addEffect(MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 5, false, false, false))
                     mob.addEffect(MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 255, false, false, false))
