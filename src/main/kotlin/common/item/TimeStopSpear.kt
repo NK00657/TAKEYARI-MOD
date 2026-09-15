@@ -19,7 +19,7 @@ class TimeStopSpear(properties: Properties):Item(properties) {
         val itemStack = player.getItemInHand(usedHand)
 
         if (!level.isClientSide) {
-            if(ModList.get().isLoaded("endinglib")){
+            if(ModList.get().isLoaded("ending_library")){
                 TimeStop.triggerTimestop(player, 200)
             }
             else{
