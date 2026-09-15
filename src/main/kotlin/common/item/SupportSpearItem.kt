@@ -19,9 +19,10 @@ import java.util.UUID
 
 
 class SupportSpearItem(
+    properties: Properties,
+    val get: Any
 
-
-) : BowItem(Properties()) {
+) : BowItem(properties) {
     private val SPEED_MODIFIER_UUID = UUID.fromString("e2a3b4c5-d6e7-4890-a1b2-c3d4e5f60718")
 
     override fun getDefaultAttributeModifiers(slot: EquipmentSlot): Multimap<Attribute, AttributeModifier> {

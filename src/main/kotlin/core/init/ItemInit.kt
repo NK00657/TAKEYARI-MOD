@@ -4,13 +4,13 @@ import io.github.nk00657.takeyari.TakeYari
 import io.github.nk00657.takeyari.common.item.NormalSpearItem
 import io.github.nk00657.takeyari.common.item.ThrowSpearItem
 import io.github.nk00657.takeyari.common.item.HeavySpearItem
+import io.github.nk00657.takeyari.common.item.SupportSpearItem
 import io.github.nk00657.takeyari.common.item.TimeStopSpear
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Rarity
 import net.minecraft.world.item.Tiers
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
-import net.minecraftforge.fml.ModList
 import thedarkcolour.kotlinforforge.forge.registerObject
 
 object ItemInit {
@@ -103,6 +103,11 @@ object ItemInit {
     val a_very_strong_bamboo_spear by ITEMS.registerObject("a_very_strong_bamboo_spear"){
         TimeStopSpear(
             properties = Item.Properties().rarity(Rarity.EPIC).defaultDurability(1024)
+        )
+    }
+    val bamboo_tube by ITEMS.registerObject("bamboo_tube"){
+        SupportSpearItem(
+            properties = Item.Properties().rarity(Rarity.UNCOMMON).defaultDurability(32),
         )
     }
 }
