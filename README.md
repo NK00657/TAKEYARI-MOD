@@ -6,7 +6,7 @@ This project integrates with or references the following third-party libraries a
 
 * **[Kotlin For Forge](https://github.com/thedarkcolour/KotlinForForge)** by thedarkcolour
   * Used: Kotlin language adapter for Minecraft Forge
-  * License: [LGPL-3.0 License](https://github.com/thedarkcolour/KotlinForForge/blob/6.x/LICENSE)
+  * License: [LGPL-2.1 License](https://github.com/thedarkcolour/KotlinForForge/blob/6.x/LICENSE)
 * **[Mekanism](https://github.com/mekanism/Mekanism)** by aidancbrady
   * Used: Mekanism API
   * License: [MIT License](https://github.com/mekanism/Mekanism/blob/1.20.x/LICENSE)
