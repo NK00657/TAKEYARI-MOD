@@ -10,7 +10,7 @@ import net.minecraft.world.item.Tier
 import net.minecraftforge.common.capabilities.ForgeCapabilities
 import net.minecraft.network.chat.Component
 
-class RadioActiveSpear(
+open class RadioActiveSpear(
     tier: Tier,
     attackDamage: Int,
     attackSpeed: Float,
