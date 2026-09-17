@@ -3,12 +3,15 @@ package io.github.nk00657.takeyari.core.init
 import io.github.nk00657.takeyari.TakeYari
 import io.github.nk00657.takeyari.common.item.HeavySpearItem
 import io.github.nk00657.takeyari.common.item.NormalSpearItem
+import io.github.nk00657.takeyari.common.item.RadioActiveSpear
 import io.github.nk00657.takeyari.common.item.SupportSpearItem
 import io.github.nk00657.takeyari.common.item.ThrowSpearItem
 import io.github.nk00657.takeyari.common.item.TimeStopSpear
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Rarity
 import net.minecraft.world.item.Tiers
+import net.minecraftforge.eventbus.api.IEventBus
+import net.minecraftforge.fml.ModList
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
@@ -115,7 +118,34 @@ object ItemInit {
 
     val bamboo_tube: RegistryObject<Item> = ITEMS.register("bamboo_tube") {
         SupportSpearItem(
-            properties = Item.Properties().rarity(Rarity.UNCOMMON).defaultDurability(32)
+            Item.Properties().rarity(Rarity.UNCOMMON).defaultDurability(32)
         )
     }
+
+    var URANIUM_BAMBOO_SPEAR: RegistryObject<RadioActiveSpear>? = null
+
+    fun register(bus: IEventBus){
+        if (ModList.get().isLoaded("mekanism")){
+            println(">>> Mekanism loaded check: true")
+
+            URANIUM_BAMBOO_SPEAR = ITEMS.register(
+                "uranium_bamboo_spear"
+            ){
+                RadioActiveSpear(
+                    tier = Tiers.NETHERITE,
+                    attackDamage = 10,
+                    attackSpeed = -3.2f,
+                    capacity = 1000000,
+                    maxExtract = 1000,
+                    maxReceive = 1000,
+                    reachBonus = 10.0,
+                    properties = Item.Properties()
+
+                )
+            }
+        }
+        ITEMS.register(bus)
+    }
+
+
 }

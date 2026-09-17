@@ -16,7 +16,7 @@ object TabInit {
     val TAKEYARI: RegistryObject<CreativeModeTab> = CREATIVE_MODE_TABS.register("takeyari") {
         CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.takeyari"))
-            .icon(Supplier { ItemStack(ItemInit.bamboo_spear) })
+            .icon(Supplier { ItemStack(ItemInit.bamboo_spear.get()) })
             .build()
     }
 }

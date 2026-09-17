@@ -12,7 +12,8 @@ object TakeYari {
     const val MOD_ID = "takeyari"
 
     init {
-        ItemInit.ITEMS.register(MOD_BUS)
+        val bus = MOD_BUS
+        ItemInit.register(bus)
         TabInit.CREATIVE_MODE_TABS.register(MOD_BUS)
 
         MOD_BUS.addListener(::addCreativeTab)

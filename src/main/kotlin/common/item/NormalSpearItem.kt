@@ -12,7 +12,7 @@ import net.minecraft.world.phys.AABB
 import net.minecraftforge.common.ForgeMod
 import java.util.UUID
 
-class NormalSpearItem (
+open class NormalSpearItem (
     tier: Tier,
     attackDamage: Int,
     attackSpeed: Float,
