@@ -1,6 +1,7 @@
 package io.github.nk00657.takeyari.core.init
 
 import io.github.nk00657.takeyari.TakeYari
+import io.github.nk00657.takeyari.common.item.AntiMatterSpearItem
 import io.github.nk00657.takeyari.common.item.HeavySpearItem
 import io.github.nk00657.takeyari.common.item.NormalSpearItem
 import io.github.nk00657.takeyari.common.item.RadioActiveSpear
@@ -119,6 +120,19 @@ object ItemInit {
     val bamboo_tube: RegistryObject<Item> = ITEMS.register("bamboo_tube") {
         SupportSpearItem(
             Item.Properties().rarity(Rarity.UNCOMMON).defaultDurability(32)
+        )
+    }
+
+    val anti_matter_bamboo_spear: RegistryObject<Item> = ITEMS.register("anti_matter_bamboo_spear"){
+        AntiMatterSpearItem(
+            tier = Tiers.NETHERITE,
+            10,
+            -3.2F,
+            10.0,
+            10000000,
+            10000,
+            10000,
+            properties = Item.Properties().rarity(Rarity.EPIC)
         )
     }
 

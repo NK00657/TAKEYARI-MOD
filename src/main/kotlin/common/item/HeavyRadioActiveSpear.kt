@@ -31,19 +31,41 @@ class HeavyRadioActiveSpear(
         }
     }
 
-    override fun use(level: Level, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack>{
+    override fun use(level: Level, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack> {
         val itemStack = player.getItemInHand(usedHand)
-        itemStack.getCapability(ForgeCapabilities.ENERGY).ifPresent{ storage ->
-            val energyCost = 10000
-            if (storage.energyStored >= energyCost){
-                val coord = Coord4D(player.blockPosition(), player.level())
 
-                IRadiationManager.INSTANCE.radiate(coord, range)
+        if (!level.isClientSide) {
+            var success = false
+
+            itemStack.getCapability(ForgeCapabilities.ENERGY).ifPresent { storage ->
+                val energyCost = 10000
+                if (storage.energyStored >= energyCost) {
+                    storage.extractEnergy(energyCost, false)
+
+                    val coord = Coord4D(player.blockPosition(), level)
+                    IRadiationManager.INSTANCE.radiate(coord, range)
+
+
+                    player.cooldowns.addCooldown(this, 300) // 15秒（300 tick）
+                    player.awardStat(Stats.ITEM_USED.get(this))
+                    success = true
+                }
+            }
+
+            if (success) {
+                return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide)
+            }
+        } else {
+
+            val hasEnergy = itemStack.getCapability(ForgeCapabilities.ENERGY)
+                .map { it.energyStored >= 10000 }
+                .orElse(false)
+
+            if (hasEnergy) {
+                return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide)
             }
         }
 
-        player.cooldowns.addCooldown(this, 300)
-        player.awardStat(Stats.ITEM_USED.get(this))
-        return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide)
+        return InteractionResultHolder.pass(itemStack)
     }
 }
